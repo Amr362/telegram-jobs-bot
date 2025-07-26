@@ -9,7 +9,7 @@ from apscheduler.executors.asyncio import AsyncIOExecutor
 from telegram import Bot
 from telegram.error import TelegramError
 from src.database.manager import SupabaseManager
-from src.database.models import User, Job, Notification, NotificationFrequency
+from src.database.models import User, Job, JobNotification, NotificationFrequency
 from src.scrapers.manager import ScrapingManager
 from src.utils.opinion_collector import OpinionCollector
 from src.utils.link_checker import LinkChecker
