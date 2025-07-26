@@ -17,7 +17,7 @@ __email__ = "support@manus.ai"
 from .bot import TelegramJobsBot
 from .database import SupabaseManager
 from .scrapers import ScrapingManager
-from .scheduler import NotificationScheduler
+from .scheduler import JobNotificationScheduler
 
 __all__ = [
     "TelegramJobsBot",

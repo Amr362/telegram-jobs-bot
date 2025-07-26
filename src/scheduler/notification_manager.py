@@ -6,7 +6,7 @@ from enum import Enum
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.error import TelegramError
 from src.database.manager import SupabaseManager
-from src.database.models import User, Job, Notification, NotificationFrequency, UserPreferences
+from src.database.models import User, Job, JobNotification, NotificationFrequency, UserPreferences
 from src.utils.logger import get_logger
 
 logger = get_logger(__name__)
