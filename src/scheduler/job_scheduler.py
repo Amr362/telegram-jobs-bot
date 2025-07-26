@@ -285,7 +285,7 @@ class JobNotificationScheduler:
             )
             
             # Record notification in database
-            notification = Notification(
+            notification = JobNotification(
                 user_id=user.telegram_id,
                 job_ids=[job.id for job, _ in jobs_with_opinions],
                 message_content=message,
@@ -585,7 +585,7 @@ class JobNotificationScheduler:
             )
             
             # Record notification
-            notification = Notification(
+            notification = JobNotification(
                 user_id=user.telegram_id,
                 job_ids=job_ids,
                 message_content=message,
