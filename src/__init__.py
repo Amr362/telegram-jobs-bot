@@ -16,13 +16,13 @@ __email__ = "support@manus.ai"
 # Package imports
 from .bot import TelegramJobsBot
 from .database import SupabaseManager
-from .scrapers import JobScraper
+from .scrapers import ScrapingManager
 from .scheduler import NotificationScheduler
 
 __all__ = [
     "TelegramJobsBot",
     "SupabaseManager", 
-    "JobScraper",
+    "ScrapingManager",
     "NotificationScheduler"
 ]
 
