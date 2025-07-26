@@ -1,9 +1,3 @@
-"""
-Scrapers Module - Job Scraping from Multiple Sources
-
-This module contains scrapers for different job sites and search engines.
-"""
-
 from .base import BaseScraper
 from .google_jobs import GoogleJobsScraper
 from .remote_sites import RemoteOKScraper, RemotiveScraper, AngelListScraper
@@ -13,7 +7,7 @@ from .manager import ScrapingManager
 __all__ = [
     "BaseScraper",
     "GoogleJobsScraper",
-    "RemoteOKScraper", 
+    "RemoteOKScraper",
     "RemotiveScraper",
     "AngelListScraper",
     "WuzzufScraper",
