@@ -97,31 +97,6 @@ class UserPreferences:
             'onboarding_completed': self.onboarding_completed
         }
 
-    @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'UserPreferences':
-        notification_times = []
-        if data.get('notification_times'):
-            for time_str in data['notification_times']:
-                if isinstance(time_str, str):
-                    hour, minute = map(int, time_str.split(':'))
-                    notification_times.append(time(hour, minute))
-                elif isinstance(time_str, time):
-                    notification_times.append(time_str)
-
-        return cls(
-            id=data.get('id'),
-            user_id=data['user_id'],
-            language_preference=LanguagePreference(data.get('language_preference', 'both')),
-            location_preference=LocationPreference(data.get('location_preference', 'both')),
-            preferred_country=data.get('preferred_country'),
-            skills=data.get('skills', []),
-            notification_frequency=data.get('notification_frequency', 1),
-            notification_times=notification_times or [time(9, 0)],
-            onboarding_completed=data.get('onboarding_completed', False),
-            created_at=data.get('created_at'),
-            updated_at=data.get('updated_at')
-        )
-
 @dataclass
 class Job:
     title: str
@@ -143,73 +118,63 @@ class Job:
     updated_at: Optional[datetime] = None
     id: Optional[int] = None
 
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            'title': self.title,
-            'company': self.company,
-            'description': self.description,
-            'location': self.location,
-            'job_type': self.job_type.value if self.job_type else None,
-            'salary_range': self.salary_range,
-            'apply_url': self.apply_url,
-            'source': self.source,
-            'source_job_id': self.source_job_id,
-            'skills_required': self.skills_required,
-            'is_remote': self.is_remote,
-            'is_active': self.is_active,
-            'link_status': self.link_status.value,
-            'link_checked_at': self.link_checked_at,
-            'scraped_at': self.scraped_at
-        }
-
-    @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'Job':
-        return cls(
-            id=data.get('id'),
-            title=data['title'],
-            company=data.get('company'),
-            description=data.get('description'),
-            location=data.get('location'),
-            job_type=JobType(data['job_type']) if data.get('job_type') else None,
-            salary_range=data.get('salary_range'),
-            apply_url=data['apply_url'],
-            source=data['source'],
-            source_job_id=data.get('source_job_id'),
-            skills_required=data.get('skills_required', []),
-            is_remote=data.get('is_remote', False),
-            is_active=data.get('is_active', True),
-            link_status=LinkStatus(data.get('link_status', 'unknown')),
-            link_checked_at=data.get('link_checked_at'),
-            scraped_at=data.get('scraped_at'),
-            created_at=data.get('created_at'),
-            updated_at=data.get('updated_at')
-        )
+@dataclass
+class JobNotification:
+    user_id: int
+    job_id: int
+    notification_type: NotificationType = NotificationType.DAILY
+    is_clicked: bool = False
+    sent_at: Optional[datetime] = None
+    clicked_at: Optional[datetime] = None
+    id: Optional[int] = None
 
 @dataclass
-class Notification:
-    id: int
+class JobOpinion:
+    job_id: int
+    company: str
+    source: str
+    opinion_text: str
+    sentiment: Sentiment = Sentiment.NEUTRAL
+    author: Optional[str] = None
+    source_url: Optional[str] = None
+    scraped_at: Optional[datetime] = None
+    created_at: Optional[datetime] = None
+    id: Optional[int] = None
+
+@dataclass
+class SearchLog:
     user_id: int
-    message: str
-    sent_at: Optional[datetime] = None
-    read: bool = False
+    search_type: str
+    search_parameters: Dict[str, Any]
+    results_count: int = 0
+    executed_at: Optional[datetime] = None
+    id: Optional[int] = None
 
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            "id": self.id,
-            "user_id": self.user_id,
-            "message": self.message,
-            "sent_at": self.sent_at,
-            "read": self.read
-        }
+@dataclass
+class BotStatistics:
+    date: datetime
+    total_users: int = 0
+    active_users: int = 0
+    jobs_scraped: int = 0
+    notifications_sent: int = 0
+    search_requests: int = 0
+    created_at: Optional[datetime] = None
+    id: Optional[int] = None
 
-    @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "Notification":
-        return cls(
-            id=data.get("id"),
-            user_id=data["user_id"],
-            message=data.get("message", ""),
-            sent_at=data.get("sent_at"),
-            read=data.get("read", False),
-        )
+@dataclass
+class JobMatch:
+    job_id: int
+    title: str
+    company: Optional[str]
+    location: Optional[str]
+    apply_url: str
+    match_score: int
+
+@dataclass
+class UserStats:
+    total_notifications: int
+    jobs_clicked: int
+    last_notification: Optional[datetime]
+    registration_date: Optional[datetime]
 
 
