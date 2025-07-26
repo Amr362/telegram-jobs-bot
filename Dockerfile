@@ -17,4 +17,3 @@ RUN useradd --create-home --shell /bin/bash app && \
 USER app
 
 CMD ["python", "main.py"]
-
