@@ -11,3 +11,4 @@ def validate_skills(skills: list) -> bool:
     if not isinstance(skills, list) or not skills:
         return False
     return all(isinstance(skill, str) and skill.strip() for skill in skills)
+
