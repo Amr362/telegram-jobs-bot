@@ -9,7 +9,7 @@ from apscheduler.executors.asyncio import AsyncIOExecutor
 from telegram import Bot
 from telegram.error import TelegramError
 from src.database.manager import SupabaseManager
-from src.database.models import User, Job, JobNotification, NotificationFrequency
+from src.database.models import User, Job, JobNotification, NotificationType
 from src.scrapers.manager import ScrapingManager
 from src.utils.opinion_collector import OpinionCollector
 from src.utils.link_checker import LinkChecker
@@ -187,11 +187,11 @@ class JobNotificationScheduler:
             
             # Get users who want morning notifications
             users = await self.db_manager.get_users_by_notification_frequency(
-                NotificationFrequency.DAILY_MORNING
+                NotificationType.DAILY
             )
             
             users.extend(await self.db_manager.get_users_by_notification_frequency(
-                NotificationFrequency.TWICE_DAILY
+                NotificationType.TWICE_DAILY
             ))
             
             notification_count = 0
@@ -219,11 +219,11 @@ class JobNotificationScheduler:
             
             # Get users who want evening notifications
             users = await self.db_manager.get_users_by_notification_frequency(
-                NotificationFrequency.DAILY_EVENING
+                NotificationType.DAILY_EVENING
             )
             
             users.extend(await self.db_manager.get_users_by_notification_frequency(
-                NotificationFrequency.TWICE_DAILY
+                NotificationType.TWICE_DAILY
             ))
             
             notification_count = 0
