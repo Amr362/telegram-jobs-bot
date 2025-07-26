@@ -177,4 +177,3 @@ class UserStats:
     last_notification: Optional[datetime]
     registration_date: Optional[datetime]
 
-
