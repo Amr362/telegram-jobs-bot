@@ -1,0 +1,68 @@
+# Telegram Bot Framework
+python-telegram-bot==20.7
+
+# Database Integration
+supabase==2.3.4
+
+# Web Scraping
+requests==2.31.0
+beautifulsoup4==4.12.2
+scrapy==2.11.0
+selenium==4.16.0
+
+# Task Scheduling
+APScheduler==3.10.4
+
+# Environment Variables
+python-dotenv==1.0.0
+
+# Data Processing
+pandas==2.1.4
+numpy==1.25.2
+
+# Text Processing and NLP
+nltk==3.8.1
+textblob==0.17.1
+
+# HTTP Client with better error handling
+httpx==0.25.2
+
+# Logging and Monitoring
+loguru==0.7.2
+
+# Date and Time Utilities
+python-dateutil==2.8.2
+pytz==2023.3
+
+# JSON Web Tokens (for API authentication)
+PyJWT==2.8.0
+
+# HTML Parsing
+lxml==4.9.3
+
+# Async Support
+aiohttp==3.9.1
+asyncio-throttle==1.0.2
+
+# Social Media APIs (for opinion gathering)
+tweepy==4.14.0
+praw==7.7.1  # Reddit API
+
+# Data Validation
+pydantic==2.5.2
+
+# Configuration Management
+pyyaml==6.0.1
+
+# Database Migrations (if needed)
+alembic==1.13.1
+
+# Testing (for development)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+
+# Development Tools
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
