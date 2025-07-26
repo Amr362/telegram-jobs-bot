@@ -7,3 +7,4 @@ def format_job_message(job: dict) -> str:
 def format_notification(message: str) -> str:
     return f"📢 إشعار جديد:\n{message}"
 
+
